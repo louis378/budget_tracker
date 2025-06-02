@@ -1,21 +1,26 @@
-# 家庭開支追蹤器 (Household Budget Tracker)
+# 家庭開支追蹤器 (Client-Side Version)
 
-這是一個簡單的基於 Web 的家庭開支追蹤應用程式，使用 Python Flask 建構。使用者可以記錄每日開支，按類別進行分類，並檢視所有開支的列表。
+這是一個純前端、基於 Web 的家庭開支追蹤應用程式，使用 HTML、CSS 和原生 JavaScript 构建。它允許使用者在本機瀏覽器中記錄每日支出、按類別進行分類，并查看所有支出的列表。
 
 ## 主要功能
 
--   透過網頁表單新增新的開支條目（日期、金額、類別、備註）。
--   開支資料儲存在 SQLite 資料庫中。
--   提供預設的開支類別供選擇。
--   在主頁顯示所有已記錄開支的列表。
--   包含後端單元測試。
+-   通過網頁表單新增開支条目（日期、金額、類別、備註）。
+-   開支數據存儲在使用者瀏覽器的 `localStorage` 中。
+-   提供預設的開支類別供选择。
+-   在主頁動態顯示所有已記錄開支的列表。
 
-## 先決條件
+## 技術棧
 
-在執行此專案之前，請確保您已安裝下列軟體：
+-   HTML
+-   CSS
+-   JavaScript (原生)
 
--   Python 3.7+
--   pip (Python 套件安裝器)
+## 數據存儲
+
+本應用程式使用瀏覽器的 `localStorage` 來存儲您的開支數據。這意味著：
+-   數據僅保存在您目前使用的瀏覽器中。
+-   數據不會在不同的瀏覽器或設備之間同步。
+-   如果您清除瀏覽器的網站數據或 `localStorage`，所有已記錄的開支將會遺失。
 
 ## 安裝與設定
 
@@ -26,62 +31,52 @@
     cd <repository_directory>/budget_tracker
     # 如果是下載的 zip 檔案，請解壓縮並進入 budget_tracker 目錄
     ```
+    *(注意: `<repository_url>` 和 `<repository_directory>` 是您實際倉庫位置的佔位符)*
 
-2.  **建立並啟用虛擬環境 (建議)**
-    ```bash
-    # 在 budget_tracker 目錄下
-    python -m venv venv
-    # Windows
-    venv\Scripts\activate
-    # macOS/Linux
-    source venv/bin/activate
-    ```
-
-3.  **安裝依賴套件**
-    在啟用虛擬環境後，安裝所需的 Python 套件：
-    ```bash
-    pip install Flask Flask-SQLAlchemy
-    ```
+2.  **無需額外安裝**
+    這是一個純客戶端應用程式，不需要安裝 Python 或其他依賴套件。
 
 ## 執行應用程式
 
-1.  **初始化資料庫**
-    資料庫和資料表將在您首次執行應用程式時自動建立（透過 `app.py` 中的 `db.create_all()`）。
-    `budget.db` 檔案將建立在 `budget_tracker` 目錄下。
+1.  導航到包含專案檔案的 `budget_tracker` 目錄。
+2.  直接在您的網頁瀏覽器中開啟 `index.html` 檔案。
+    -   例如，在檔案總管中雙擊 `index.html`，或使用瀏覽器的 "開啟檔案..." 選項。
 
-2.  **啟動 Flask 開發伺服器**
-    在 `budget_tracker` 目錄下執行下列命令：
-    ```bash
-    python app.py
-    ```
+## 如何使用
 
-3.  **存取應用程式**
-    開啟您的網路瀏覽器，造訪下列位址：
-    [http://127.0.0.1:5000/](http://127.0.0.1:5000/)
-
-## 使用說明
-
--   **新增開支**：在主頁的表單中填寫日期、金額、選擇一個類別，並（可選地）新增備註。點擊“新增開支”按鈕。
--   **檢視開支**：所有已新增的開支將顯示在主頁表單下方的列表中。
+-   **新增開支**：在主頁的表單中填寫日期、金額、選擇一個類別，并（可選地）添加備註。點擊“新增開支”按鈕。新的開支將被保存到您瀏覽器的 `localStorage` 中。
+-   **檢視開支**：所有已添加的開支將動態顯示在主頁表單下方的列表中。
 
 ## 專案結構
 
 ```
 budget_tracker/
-├── app.py            # 主要 Flask 應用程式檔案 (後端邏輯、路由、資料庫模型)
-├── budget.db         # SQLite 資料庫檔案 (自動建立)
-├── test_app.py       # 後端單元測試
+├── index.html        # 主要的 HTML 結構檔案
+├── script.js         # JavaScript 應用程式邏輯
 ├── static/
 │   └── style.css     # CSS 樣式檔案
-├── templates/
-│   └── index.html    # 前端 HTML 範本
 └── README.md         # 本說明檔案
 ```
 
-## 執行測試
+## GitHub Pages 部署
 
-要執行後端單元測試，請在 `budget_tracker` 目錄下（確保虛擬環境已啟用並安裝了依賴套件）執行：
+您可以將此專案部署到 GitHub Pages 以便在线访问。
 
-```bash
-python test_app.py
+1.  **準備您的倉庫**：
+    *   確保您的 `index.html`, `script.js`, 和 `static` 文件夾位於您希望 GitHub Pages 提供服務的目錄的根部。如果您的 `budget_tracker` 目錄就是您要部署的內容，那麽這些檔案應該直接在 `budget_tracker` 目錄下。
+    *   將您的更改推送到 GitHub 倉庫。
+
+2.  **設定 GitHub Pages**：
+    *   在您的 GitHub 倉庫頁面，點擊 "Settings" (設定)。
+    *   在左側導航欄中，選擇 "Pages"。
+    *   在 "Build and deployment" 下的 "Source" 部分，選擇您要部署的分支 (例如 `main` 或 `budget-tracker-feature`)。
+    *   選擇資料夾：
+        *   如果您倉庫的根目錄就是 `budget_tracker` 的內容 (即 `index.html` 在根目錄)，選擇 `/ (root)`。
+        *   如果 `budget_tracker` 是一個子目錄，並且您想從這個子目錄部署，您可能需要將 `budget_tracker` 重新命名為 `docs` 並將其放在倉庫根目錄，然後選擇 `/docs` 資料夾。最簡單的方式通常是將 `index.html` 等檔案放在分支的根目錄。
+    *   點擊 "Save"。
+
+3.  **訪問您的網站**：
+    *   GitHub Pages 可能需要幾分鐘來構建和部署您的網站。
+    *   部署完成後，您應該能在同一頁面上看到您的網站 URL (通常是 `https://<your-username>.github.io/<repository-name>/`)。
+
 ```

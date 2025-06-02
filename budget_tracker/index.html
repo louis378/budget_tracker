@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="zh-TW"> <!-- Changed lang to zh-TW for Traditional Chinese -->
+<html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>家庭開支追蹤器</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="static/style.css">
 </head>
 <body>
     <h1>新增開支</h1>
-    <form action="{{ url_for('add_expense') }}" method="post">
+    <form id="expense-form">
         <div>
             <label for="date">日期:</label>
             <input type="date" id="date" name="date" required>
@@ -20,9 +20,7 @@
         <div>
             <label for="category">類別:</label>
             <select id="category" name="category" required>
-                {% for category in categories %}
-                <option value="{{ category }}">{{ category }}</option>
-                {% endfor %}
+                <!-- Options will be populated by JavaScript -->
             </select>
         </div>
         <div>
@@ -42,16 +40,10 @@
                 <th>備註</th>
             </tr>
         </thead>
-        <tbody>
-            {% for expense in expenses %}
-            <tr>
-                <td>{{ expense.date.strftime('%Y-%m-%d') }}</td>
-                <td>{{ "%.2f"|format(expense.amount) }}</td>
-                <td>{{ expense.category }}</td>
-                <td>{{ expense.description }}</td>
-            </tr>
-            {% endfor %}
+        <tbody id="expense-list-body">
+            <!-- Expense rows will be populated by JavaScript -->
         </tbody>
     </table>
+    <script src="script.js"></script>
 </body>
 </html>
