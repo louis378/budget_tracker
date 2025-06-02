@@ -19,7 +19,7 @@ class BudgetTrackerTests(unittest.TestCase):
     def test_01_index_route_empty_db(self):
         response = self.client.get('/')
         self.assertEqual(response.status_code, 200)
-        self.assertIn('<h1>添加新支出</h1>', response.data.decode('utf-8'))
+        self.assertIn('<h1>新增開支</h1>', response.data.decode('utf-8'))
 
     def test_02_add_expense_and_redirect(self):
         response = self.client.post('/add_expense', data=dict(
@@ -43,14 +43,14 @@ class BudgetTrackerTests(unittest.TestCase):
                 date=datetime.date(2023, 1, 15),
                 amount=75.0,
                 category='交通',
-                description='地铁卡充值'
+                description='捷運卡儲值'
             )
             db.session.add(test_expense)
             db.session.commit()
         response = self.client.get('/')
         self.assertEqual(response.status_code, 200)
         response_data_decoded = response.data.decode('utf-8')
-        self.assertIn('地铁卡充值', response_data_decoded)
+        self.assertIn('捷運卡儲值', response_data_decoded)
         self.assertIn('75.00', response_data_decoded)
         self.assertIn('交通', response_data_decoded)
         self.assertIn('2023-01-15', response_data_decoded)

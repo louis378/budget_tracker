@@ -1,24 +1,24 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-TW"> <!-- Changed lang to zh-TW for Traditional Chinese -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>家庭支出追踪器</title>
+    <title>家庭開支追蹤器</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>添加新支出</h1>
+    <h1>新增開支</h1>
     <form action="{{ url_for('add_expense') }}" method="post">
         <div>
             <label for="date">日期:</label>
             <input type="date" id="date" name="date" required>
         </div>
         <div>
-            <label for="amount">金额:</label>
+            <label for="amount">金額:</label>
             <input type="number" id="amount" name="amount" step="0.01" required>
         </div>
         <div>
-            <label for="category">类别:</label>
+            <label for="category">類別:</label>
             <select id="category" name="category" required>
                 {% for category in categories %}
                 <option value="{{ category }}">{{ category }}</option>
@@ -26,20 +26,20 @@
             </select>
         </div>
         <div>
-            <label for="description">描述:</label>
+            <label for="description">備註:</label>
             <textarea id="description" name="description"></textarea>
         </div>
-        <button type="submit">添加支出</button>
+        <button type="submit">新增開支</button>
     </form>
 
-    <h2>支出列表</h2>
+    <h2>開支列表</h2>
     <table>
         <thead>
             <tr>
                 <th>日期</th>
-                <th>金额</th>
-                <th>类别</th>
-                <th>描述</th>
+                <th>金額</th>
+                <th>類別</th>
+                <th>備註</th>
             </tr>
         </thead>
         <tbody>

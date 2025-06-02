@@ -24,7 +24,7 @@ class Expense(db.Model):
     def __repr__(self):
         return f'<Expense {self.id} - {self.date} - {self.amount} - {self.category}>'
 
-PREDEFINED_CATEGORIES = ["食物", "交通", "住房", "水电费", "娱乐", "医疗健康", "教育", "其他"]
+PREDEFINED_CATEGORIES = ["食物", "交通", "居住", "水電雜費", "娛樂", "醫療保健", "教育", "其他"]
 
 @app.route('/')
 def index():
